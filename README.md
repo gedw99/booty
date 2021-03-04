@@ -52,7 +52,10 @@ rm ./README.md
 booty gw add-all
 booty gw commit 'blah'
 
-# push to remote origin
+# check if there were any changes on the shared remote upstream repo.
+booty gw fup
+
+# push from your local origin to your remote origin
 booty gw push
 
 # open the github repo and create a Push Request (PR) back to upstream as per normal.
