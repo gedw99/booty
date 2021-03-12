@@ -3,6 +3,8 @@
 
 # (WIP) Booty
 
+Public tooling
+
 ### Spec & Design:
 
 - [Issue 108](https://github.com/amplify-edge/main/issues/108)
