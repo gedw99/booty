@@ -3,6 +3,8 @@
 
 # (WIP) Booty
 
+Public tooling
+
 ### Spec & Design:
 
 - [Issue 108](https://github.com/amplify-edge/main/issues/108)
@@ -29,6 +31,39 @@ or to write it to file (*nix / Darwin for example):
 
 it will generate your shell completion, refer to your shell documentation on how best to install it and source it on
 your shell.
+
+
+## Usage ( for users )
+
+### Git
+
+```bash
+# clone your forked repro. 
+# for this example the user is "johnsmith", and the repro is "shared".
+git clone git@github.com-johnsmith:johnsmith/shared
+cd shared
+
+# setup git config to have remote section pointing to upstream repository.
+booty gw reg share
+booty gw fset amplify-edge
+
+# make any change.
+rm ./README.md
+
+# add and commit.
+booty gw add-all
+booty gw commit 'blah'
+
+# check if there were any changes on the shared remote upstream repo.
+booty gw fup
+
+# push from your local origin to your remote origin
+booty gw push
+
+# open the github repo and create a Push Request (PR) back to upstream as per normal.
+open https://github.com/johnsmith/shared
+
+```
 
 ## Usage (for devs)
 
