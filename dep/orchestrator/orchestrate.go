@@ -157,6 +157,8 @@ func (o *Orchestrator) Command() *cobra.Command {
 		cmd.CleanCacheCmd(o),
 		cmd.CompletionCommand(o),
 		cmd.HugoCommand(o),
+		cmd.PkgRepoServerCmd(),
+		cmd.PkgRepoClientCmd(),
 	}
 	if o.cfg.DevMode {
 		extraCmds = append(
