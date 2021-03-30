@@ -21,7 +21,7 @@ func Download(dlUrl string, targetDir string) error {
 
 	if notex, err = IsEmptyDir(targetDir); notex || err != nil {
 		httpGetter := getter.HttpGetter{Netrc: true}
-		pbar := progressBar{}
+		pbar := ProgressBar{}
 		progress := []getter.ClientOption{getter.WithProgress(&pbar)}
 		if osutil.GetOS() == "windows" {
 			progress = []getter.ClientOption{}
@@ -45,7 +45,7 @@ func Download(dlUrl string, targetDir string) error {
 	return nil
 }
 
-type progressBar struct {
+type ProgressBar struct {
 	lock     sync.Mutex
 	progress *pb.ProgressBar
 }
@@ -56,7 +56,7 @@ type progressBar struct {
 
 const pbTpl pb.ProgressBarTemplate = `{{ string . "prefix" }} {{counters . | green }} {{ bar . "<" "=" (cycle . "↖" "↗" "↘" "↙" ) "." ">" | cyan }} {{speed . | green }} {{percent .}} {{ string . "suffix" }}`
 
-func (cpb *progressBar) TrackProgress(src string, currentSize, totalSize int64, stream io.ReadCloser) io.ReadCloser {
+func (cpb *ProgressBar) TrackProgress(src string, currentSize, totalSize int64, stream io.ReadCloser) io.ReadCloser {
 	cpb.lock.Lock()
 	defer cpb.lock.Unlock()
 	if cpb.progress == nil {

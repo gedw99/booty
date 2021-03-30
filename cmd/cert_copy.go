@@ -6,7 +6,6 @@ import (
 	"go.amplifyedge.org/booty-v2/dep"
 	"go.amplifyedge.org/booty-v2/internal/fileutil"
 	"go.amplifyedge.org/booty-v2/internal/osutil"
-	"os"
 	"path/filepath"
 )
 
@@ -27,11 +26,6 @@ func CopyCertCommand(e dep.Executor) *cobra.Command {
 		}
 		certDir := filepath.Join(osutil.GetDataDir(), cname)
 		dst := args[0]
-		if osutil.DirExists(dst) {
-			if err := os.RemoveAll(dst); err != nil {
-				return err
-			}
-		}
 		_, err := fileutil.Copy(certDir, dst)
 		return err
 	}

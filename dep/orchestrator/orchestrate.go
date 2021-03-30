@@ -30,6 +30,7 @@ import (
 	"go.amplifyedge.org/booty-v2/internal/store/file"
 	"go.amplifyedge.org/booty-v2/internal/update"
 	sharedCmd "go.amplifyedge.org/shared-v2/tool/bs-crypt/cmd"
+	langCmd "go.amplifyedge.org/shared-v2/tool/bs-lang/cmd"
 )
 
 //go:embed makefiles/*
@@ -150,12 +151,14 @@ func (o *Orchestrator) Command() *cobra.Command {
 		// here we exported all the internal tools we might need (bs-crypt, bs-lang, etc)
 		sharedCmd.EncryptCmd(),
 		sharedCmd.DecryptCmd(),
-		//langCmd.RootCmd,
+		langCmd.RootCmd,
 		cmd.GitWrapperCmd(o.gw),
 		cmd.OsPrintCommand(o),
 		cmd.CleanCacheCmd(o),
 		cmd.CompletionCommand(o),
 		cmd.HugoCommand(o),
+		cmd.PkgRepoServerCmd(),
+		cmd.PkgRepoClientCmd(),
 	}
 	if o.cfg.DevMode {
 		extraCmds = append(

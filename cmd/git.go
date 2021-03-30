@@ -9,7 +9,11 @@ import (
 
 // Simple wrapper for git
 func GitWrapperCmd(gw dep.GitWrapper) *cobra.Command {
-	gitCmd := &cobra.Command{Use: "gw", DisableFlagParsing: true, Short: "Gee Dubs (gw) is a simple wrapper for git, see -help for subcommands"}
+	gitCmd := &cobra.Command{
+		Use: "gw",
+		DisableFlagParsing: true,
+		Short: "Gee Dubs (gw) is a simple wrapper for git, see -help for subcommands",
+	}
 	gitCmd.DisableFlagParsing = true
 	gitCmd.Flags().SetInterspersed(true)
 	tagCmd := &cobra.Command{Use: "tag <subcommand>", Short: "tag a release"}

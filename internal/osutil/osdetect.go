@@ -29,7 +29,7 @@ func init() {
 
 func setupDirs() (appDirs, error) {
 	prefix := getInstallPrefix()
-	dirs := []string{"bin", "etc", "data", "cache", "include"}
+	dirs := []string{"bin", "etc", "data", "cache", "include", "uploads"}
 	ad := appDirs{}
 	for i := range dirs {
 		dirPath := filepath.Join(prefix, dirs[i])
@@ -47,6 +47,8 @@ func setupDirs() (appDirs, error) {
 			ad.cache = dirPath
 		case "include":
 			ad.include = dirPath
+		case "uploads":
+			ad.include = dirPath
 		}
 	}
 	return ad, nil
@@ -59,6 +61,7 @@ type appDirs struct {
 	etc     string // contains configurations
 	include string // contains shared library
 	cache   string // contains downloaded tarballs
+	uploads string // contains uploaded binaries
 }
 
 // runtimeInfo for the whole application
@@ -170,6 +173,10 @@ func GetDataDir() string {
 
 func GetDownloadDir() string {
 	return dirs.cache
+}
+
+func GetUploadDir() string {
+	return dirs.uploads
 }
 
 func GetIncludeDir() string {

@@ -105,9 +105,9 @@ func (v *VicMet) Version() update.Version {
 
 func (v *VicMet) Download() error {
 	// victoriametrics doesn't support windows yet
-	if osutil.GetOS() == "windows" {
-		return nil
-	}
+	//if osutil.GetOS() == "windows" {
+	//	return nil
+	//}
 	targetDir := getDlPath(v.Name(), v.version.String())
 	return downloader.Download(vicMetUrlBase+"?ref=v"+v.version.String(), targetDir)
 }
@@ -117,9 +117,9 @@ func (v *VicMet) Dependencies() []dep.Component {
 }
 
 func (v *VicMet) Install() error {
-	if osutil.GetOS() == "windows" {
-		return nil
-	}
+	//if osutil.GetOS() == "windows" {
+	//	return nil
+	//}
 	dlPath := getDlPath(v.Name(), v.version.String())
 	var err error
 	binDir := osutil.GetBinDir()
@@ -201,9 +201,6 @@ func (v *VicMet) Uninstall() error {
 }
 
 func (v *VicMet) Run(args ...string) error {
-	if osutil.GetOS() == "windows" {
-		return nil
-	}
 	if v.svcs == nil {
 		svcs, err := v.service()
 		if err != nil {
@@ -220,16 +217,10 @@ func (v *VicMet) Run(args ...string) error {
 }
 
 func (v *VicMet) Update(version update.Version) error {
-	if osutil.GetOS() == "windows" {
-		return nil
-	}
 	return commonUpdate(v, version)
 }
 
 func (v *VicMet) RunStop() error {
-	if osutil.GetOS() == "windows" {
-		return nil
-	}
 	if v.svcs == nil {
 		svcs, err := v.service()
 		if err != nil {
