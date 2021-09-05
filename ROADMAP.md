@@ -27,7 +27,7 @@ On your project use what makes sense but if you notice your using it across proj
 
 ## Install
 
-Use the Bingo approach to include a version of booty in any project repo.
+Use the Bingo ( https://github.com/bwplotka/bingo ) approach to include a version of booty in any project repo.
 See: https://github.com/grafana/grafana/tree/main/.bingo
 
 On server with no golang use install.ah curl
